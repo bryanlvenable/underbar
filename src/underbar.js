@@ -50,6 +50,16 @@ var _ = {};
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
+    // collection will be an array
+    // loop through collection
+    // return array of arrays
+    // iterator is a callback function which takes in animal, index, and list
+    // and pushes them to iterationInputs, the result
+    // Loop through collection
+    for (var i=0; i < collection.length; i++){
+      iterator(collection[i], i, collection);
+    }
+    return
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
