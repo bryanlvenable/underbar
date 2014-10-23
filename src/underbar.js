@@ -39,6 +39,9 @@ var _ = {};
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    // Find last position in array
+    var lastPosition = array.length - 1;
+    return n === undefined ? array[lastPosition] : n === 0 ? [] : array.slice(-n, array.length);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
