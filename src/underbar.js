@@ -52,19 +52,26 @@ var _ = {};
   _.each = function(collection, iterator) {
     // Currently cannot iterate over objects, return to this later
 
-
+    
+    // This works for 1 and 2
     // Loop through collection
+    // Works for indexOf
     for (var i=0; i < collection.length; i++){
       iterator(collection[i], i, collection);
     }
+    
+
     /*
-    for (var property in collection) {
-      if (collection.hasOwnProperty(property)) {
-        iterator(collection[i], i, collection);
-      }
-      i++;
+    // This works for 1 and 3 when ending before collectionKeys.length
+    // Works for 1 and 2 when ending before collection.length
+    // indexOf does not work for either of these
+    var collectionKeys = Object.keys(collection);
+    for (var i=0; i<collectionKeys.length; i++) {
+      iterator(collection[collectionKeys[i]], collectionKeys[i], collection);
     }
     */
+
+
     return
   };
 
