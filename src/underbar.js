@@ -50,15 +50,21 @@ var _ = {};
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
-    // collection will be an array
-    // loop through collection
-    // return array of arrays
-    // iterator is a callback function which takes in animal, index, and list
-    // and pushes them to iterationInputs, the result
+    // Currently cannot iterate over objects, return to this later
+
+
     // Loop through collection
     for (var i=0; i < collection.length; i++){
       iterator(collection[i], i, collection);
     }
+    /*
+    for (var property in collection) {
+      if (collection.hasOwnProperty(property)) {
+        iterator(collection[i], i, collection);
+      }
+      i++;
+    }
+    */
     return
   };
 
@@ -81,6 +87,17 @@ var _ = {};
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    // Initialize resulting array
+    var result = [];
+    // Loop through collection
+    for (var i=0; i<collection.length; i++){
+      var current = collection[i];
+      // Conduct test and push to result if true
+      if (test(current) === true){
+        result.push(current);
+      }
+    }
+    return result;
   };
 
   // Return all elements of an array that don't pass a truth test.
