@@ -111,6 +111,20 @@ var _ = {};
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+
+    // First modify, then go back and re-use _.filter()
+    // Initialize resulting array
+    var result = [];
+    // Loop through collection
+    for (var i=0; i<collection.length; i++){
+      var current = collection[i];
+      // Conduct test and push to result if false
+      if (test(current) === false){
+        result.push(current);
+      }
+    }
+    return result;
+
   };
 
   // Produce a duplicate-free version of the array.
