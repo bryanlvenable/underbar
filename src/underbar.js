@@ -129,8 +129,6 @@ var _ = {};
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    // Array to hold result
-    var result = [array[0]];
     for (var i=0; i<array.length-1; i++){
       // Search for current element of array
       for (var j=i+1; j<array.length; j++){
