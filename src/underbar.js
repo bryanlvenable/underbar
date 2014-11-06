@@ -50,28 +50,20 @@ var _ = {};
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
-    // Currently cannot iterate over objects, return to this later
-
-    
-    // This works for 1 and 2
-    // Loop through collection
-    // Works for indexOf
-    for (var i=0; i < collection.length; i++){
-      iterator(collection[i], i, collection);
+    // Check to see if collection is an array
+    if (Array.isArray(collection)) {
+      for (var i=0; i < collection.length; i++) {
+        iterator(collection[i], i, collection);
+      }
     }
-    
-
-    /*
-    // This works for 1 and 3 when ending before collectionKeys.length
-    // Works for 1 and 2 when ending before collection.length
-    // indexOf does not work for either of these
-    var collectionKeys = Object.keys(collection);
-    for (var i=0; i<collectionKeys.length; i++) {
-      iterator(collection[collectionKeys[i]], collectionKeys[i], collection);
+    // If collection is an object
+    else { 
+      // Find how many keys are in collection
+      var collectionKeys = Object.keys(collection);
+      for (var i=0; i<collectionKeys.length; i++) {
+        iterator(collection[collectionKeys[i]], collectionKeys[i], collection);
+      }
     }
-    */
-
-
     return
   };
 
