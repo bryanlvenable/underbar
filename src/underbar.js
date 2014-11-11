@@ -170,6 +170,25 @@ var _ = {};
   // Calls the method named by functionOrKey on each value in the list.
   // Note: you will nead to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    // Create variable for result
+    //var result = [];
+    // Check if function and iterate through collection applying function
+    //if (typeof collection === 'function') {
+      // If collection is array
+      if (Array.isArray(collection)) {
+        for (var i=0; i<collection.length; i++) {
+          collection[i] = functionOrKey(collection[i]);
+        }
+      }
+      else {
+        var collectionKeys = Object.keys(collection);
+        for (var i=0; i<collectionKeys.length; i++) {
+          collection[i] = functionOrKey(collection[i]);
+        }
+      }
+    //}
+
+    return collection;
   };
 
   // Reduces an array or object to a single value by repetitively calling
@@ -186,6 +205,26 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
+    // Check if there is an initialValue by checking if accumulator is defined
+    if (accumulator === undefined){
+      accumulator = collection[0];
+    }
+    // Check if collection is an array
+    if (Array.isArray(collection)) {
+      // Iterate through collection
+      for (var i=0; i<collection.length; i++){
+        accumulator = iterator(accumulator, collection[i]);
+      }
+    }
+    // If collection is an object
+    else {
+      // Find out how many keys are in collection
+      var collectionKeys = Object.keys(collection);
+      for (var i=0; i<collectionKeys.length; i++){
+        accumulator = iterator(accumulator, collection[collectionKeys[i]]);
+      }
+    }
+    return accumulator;
   };
 
   // Determine if the array or object contains a given value (using `===`).
