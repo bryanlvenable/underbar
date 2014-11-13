@@ -170,25 +170,22 @@ var _ = {};
   // Calls the method named by functionOrKey on each value in the list.
   // Note: you will nead to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
-    // Create variable for result
-    //var result = [];
     // Check if function and iterate through collection applying function
-    //if (typeof collection === 'function') {
-      // If collection is array
-      if (Array.isArray(collection)) {
-        for (var i=0; i<collection.length; i++) {
-          collection[i] = functionOrKey(collection[i]);
-        }
-      }
+    if (typeof functionOrKey === 'function') {
+      // Use map to iterate through collection
+      return _.map(collection, function(item) {
+        return functionOrKey.apply(item,args);
+      });
+    }
+    /*
       else {
         var collectionKeys = Object.keys(collection);
         for (var i=0; i<collectionKeys.length; i++) {
           collection[i] = functionOrKey(collection[i]);
         }
       }
-    //}
-
-    return collection;
+    }
+    */
   };
 
   // Reduces an array or object to a single value by repetitively calling
@@ -243,6 +240,13 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+    // Create variable for result
+    //var result = _.reduce(collection, iterator);
+    // If collection is empty, output true
+    if (collection === '[]'){
+      return true;
+    }
+    //return result;
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
