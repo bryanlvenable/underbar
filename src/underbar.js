@@ -177,15 +177,14 @@ var _ = {};
         return functionOrKey.apply(item,args);
       });
     }
-    /*
-      else {
-        var collectionKeys = Object.keys(collection);
-        for (var i=0; i<collectionKeys.length; i++) {
-          collection[i] = functionOrKey(collection[i]);
-        }
-      }
+    
+    // If it is not a function, it must be a method
+    else {
+      return _.map(collection, function(item) {
+        return item[functionOrKey].apply(item, args);
+      });
+
     }
-    */
   };
 
   // Reduces an array or object to a single value by repetitively calling
