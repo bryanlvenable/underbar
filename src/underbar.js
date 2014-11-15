@@ -265,6 +265,30 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+
+    // Comeback later and re-do using every()
+
+    // If collection is empty, output true
+    if (collection.length === 0) {
+      return false;
+    }
+    // Create function that tests if true
+    var checker = function(accumulator, checkee) {
+      // If iterator is a function, apply it
+      if (typeof iterator === 'function'){
+        checkee = iterator(checkee);
+      }
+      if (checkee || accumulator) {
+        accumulator = true;
+      }
+      // If either the current test or the accumulator is already false
+      else {
+        accumulator = false;
+      }
+      return accumulator;
+    };
+    // Use reduce to cycle through collection
+    return _.reduce(collection, checker, false);
   };
 
 
