@@ -235,17 +235,30 @@ var _ = {};
     }, false);
   };
 
-
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    // Create variable for result
-    //var result = _.reduce(collection, iterator);
     // If collection is empty, output true
-    if (collection === '[]'){
+    if (collection.length === 0) {
       return true;
     }
-    //return result;
+    // Create function that tests if true
+    var checker = function(accumulator, checkee) {
+      // If iterator is a function, apply it
+      if (typeof iterator === 'function'){
+        checkee = iterator(checkee);
+      }
+      if (checkee && accumulator) {
+        accumulator = true;
+      }
+      // If either the current test or the accumulator is already false
+      else {
+        accumulator = false;
+      }
+      return accumulator;
+    };
+    // Use reduce to cycle through collection
+    return _.reduce(collection, checker, true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
