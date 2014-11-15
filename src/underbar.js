@@ -327,6 +327,20 @@ var _ = {};
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    // Create variables for properties and temp object
+    var prop, tempObj;
+    // Find length of arguments
+    var len = arguments.length;
+    for (var i=1; i < len; i++) {
+      tempObj = arguments[i];
+      for (prop in tempObj) {
+        // Check if there is currently a key
+        if (obj[prop] === undefined) {
+          obj[prop] = tempObj[prop];
+        }
+      }
+    }
+    return obj;
   };
 
 
