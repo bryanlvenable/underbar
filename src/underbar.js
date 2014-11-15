@@ -311,6 +311,17 @@ var _ = {};
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    // Create variables for properties and temp object
+    var prop, tempObj;
+    // Find length of arguments
+    var len = arguments.length;
+    for (var i=1; i < len; i++) {
+      tempObj = arguments[i];
+      for (prop in tempObj) {
+        obj[prop] = tempObj[prop];
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
