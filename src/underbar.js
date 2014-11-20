@@ -382,6 +382,9 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var alreadyCalled = false;
+    var result;
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -391,6 +394,13 @@ var _ = {};
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var args = [];
+    for (var i = 2; i<arguments.length; i++){
+      args.push(arguments[i]);
+    }
+    return setTimeout(function() {
+      return func.apply(this,args)}
+      , wait);
   };
 
 
@@ -405,6 +415,55 @@ var _ = {};
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    // Copy array
+    function copy() {
+      return Array.prototype.slice.call(arguments, 0);
+    };
+    var array1 = copy(array); /*
+    if (Array.isArray(array)) {
+      // Initialize new array
+      var shuffledArray = [];
+      // Use while loop to loop through array
+      while(array1.length>0){
+        // Find random number between 0 and length of array
+        var ran = Math.floor(Math.random()*array1.length);
+        // Create new array
+        shuffledArray.push(array1[ran]);   
+        // Splice array
+        array1.splice(ran,1);
+      }
+      return shuffledArray;
+    }
+    else {
+      var shuffledObj = {};
+      // Find how many keys are in collection
+      var collectionKeys = Object.keys(array1);
+      while (collectionKeys.length > 0) {
+        var ran = Math.floor(Math.random()*collectionKeys.length);
+        shuffledObj.collectionKeys[ran];
+        collectionKeys.splice(ran,1);
+      }
+      var shuffledObj = {};
+      while (array1.length > 0) {
+        var ran = Math.floor(Math.random()*array1.length);
+        shuffledObj.array1[ran];
+        array1.splice(ran,1);
+      }
+      return shuffledObj;
+    } */
+      // Initialize new array
+      var shuffledObj = {};
+      // Use while loop to loop through array
+      while(array1.length>0){
+        // Find random number between 0 and length of array
+        var ran = Math.floor(Math.random()*array1.length);
+        // Create new array
+        shuffledObj.array1[ran];   
+        // Splice array
+        array1.splice(ran,1);
+      }
+      return shuffledObj;
+
   };
 
 
