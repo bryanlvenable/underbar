@@ -421,10 +421,8 @@ var _ = {};
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
     // Copy array
-    function copy() {
-      return Array.prototype.slice.call(arguments, 0);
-    };
-    var array1 = copy(array); /*
+    var array1 = array.slice();
+ 
     if (Array.isArray(array)) {
       // Initialize new array
       var shuffledArray = [];
@@ -455,20 +453,7 @@ var _ = {};
         array1.splice(ran,1);
       }
       return shuffledObj;
-    } */
-      // Initialize new array
-      var shuffledObj = {};
-      // Use while loop to loop through array
-      while(array1.length>0){
-        // Find random number between 0 and length of array
-        var ran = Math.floor(Math.random()*array1.length);
-        // Create new array
-        shuffledObj.array1[ran];   
-        // Splice array
-        array1.splice(ran,1);
-      }
-      return shuffledObj;
-
+    }
   };
 
 
